@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <title>Hello, Guest!</title>
+</head>
+
+<body>
+    <h4>Reporting Details</h4>
+<form>
+    <div>
+        
+        <table>
+            <tr>
+                <td>
+                    <label>Report Name</label>
+                </td>
+                <td>
+                    <input type="text" id="reportingName" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Report Period</label>
+                </td>
+                <td>
+                <input type="month" id="reportingPeriod" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Regulator</label>
+                </td>
+                <td>
+                <select required>
+                    <option value="">None</option>
+                    <option value="1">BDF</option>
+                    <option value="2">NBB</option>
+                    <option value="4">BBK</option>
+                    <option value="5">BCL</option>
+                    <option value="6">CBI</option>                    
+                </select>               
+                </td>
+            </tr>
+        </table>
+        
+        
+       <button>Save</button>
+
+    </div>
+</form>
+</body>
+<style>
+input,select:invalid {
+  border: 1px solid red;
+}
+
+input,select:invalid:required {
+  background-image: linear-gradient(to right, pink, pink);
+}
+
+input,select:valid {
+  border: 1px solid black;
+}
+
+</style>
+
+</html>
