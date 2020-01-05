@@ -5,66 +5,141 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <title>Hello, Guest!</title>
+    <script type="text/javascript" src="reports.js"></script>
+    <script type="text/javascript" src="eventHandlers.js"></script>
+    <script>
+        var reportCollection = new Map();
+        function clickEvent() {
+            if ( ! document.forms[0].checkValidity())
+            return false;
+
+            re = new reports(reportForm.reportingName.value,
+                reportForm.reportingPeriod.value,
+                reportForm.regulator.value);
+            reportCollection.set(re.reportName, re);
+            console.log("Report " + reportCollection.get(re.reportName).reportName + " added");
+            refreshDataTable();
+        }
+        function refreshDataTable() {
+            var stringToAppend = "";
+            document.getElementById("dataTable").innerHTML = "";
+            for (var [key, value] of reportCollection) {
+                reportVar = value;
+                stringToAppend = stringToAppend + "<tr>" +
+                    "<td>" + reportVar.reportName + "</td>" +
+                    "<td>" + reportVar.reportPeriod + "</td>" +
+                    "<td>" + reportVar.regulator + "</td>" +
+                    "</tr>";
+            }
+            document.getElementById("dataTable").innerHTML = document.getElementById("dataTable").innerHTML + stringToAppend;
+        }
+        function test()
+        {
+            // FormData.checkValidity()
+            console.log("Function Called");
+            alert('Value Changed');
+        }
+    </script>
 </head>
 
 <body>
-    <h4>Reporting Details</h4>
-<form>
-    <div>
-        
+    <h2>Reporting Details</h2>
+    <form id="reportForm" onformchange="test()">
         <table>
+
             <tr>
                 <td>
-                    <label>Report Name</label>
+                    <label for="reportingName">Report Name</label>
                 </td>
                 <td>
-                    <input type="text" id="reportingName" required>
+                    <input type="text" id="reportingName" placeholder ="Report Name"  name="reportingName" required>
+                    <!-- <label style="visibility:hidden;">Report Name cannot be empty</label> -->
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label>Report Period</label>
+                    <label for="reportingPeriod">Report Period</label>
                 </td>
                 <td>
-                <input type="month" id="reportingPeriod" required>
+                    <input type="month" id="reportingPeriod" placeholder ="Report Period" name="reportingPeriod" required>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label>Regulator</label>
+                    <label for="regulator">Regulator</label>
                 </td>
                 <td>
-                <select required>
-                    <option value="">None</option>
-                    <option value="1">BDF</option>
-                    <option value="2">NBB</option>
-                    <option value="4">BBK</option>
-                    <option value="5">BCL</option>
-                    <option value="6">CBI</option>                    
-                </select>               
+                    <select id="regulator" name="regulator" placeholder ="Regulator" required>
+                        <option value="">None</option>
+                        <option value="BDF">BDF</option>
+                        <option value="NBB">NBB</option>
+                        <option value="BBK">BBK</option>
+                        <option value="BCL">BCL</option>
+                        <option value="CBI">CBI</option>
+                    </select>
                 </td>
             </tr>
         </table>
-        
-        
-       <button>Save</button>
 
-    </div>
-</form>
+        <input type="submit" onclick="clickEvent()" value="Save" />
+        <table id="reportTable">
+            <thead>
+                <tr>
+                    <th>Report Name</th>
+                    <th>Report Period</th>
+                    <th>Regulator</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable"></tbody>
+        </table>
+
+
+    </form>
 </body>
+
 <style>
-input,select:invalid {
-  border: 1px solid red;
-}
+    input.text,
+    select:invalid {
+        border: 1px solid red;
+    }
 
-input,select:invalid:required {
-  background-image: linear-gradient(to right, pink, pink);
-}
+    input.text,
+    select:invalid:required {
+        background-image: linear-gradient(to right, pink, pink);
+    }
 
-input,select:valid {
-  border: 1px solid black;
-}
+    input.text,
+    select:valid {
+        border: 1px solid black;
+    }
 
+    #reportTable {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #reportTable td,
+    #reportTable th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #reportTable tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #reportTable tr:hover {
+        background-color: #ddd;
+    }
+
+    #reportTable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
 </style>
 
 </html>
