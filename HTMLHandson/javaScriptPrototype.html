@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h2>JavaScript Prototyping Examples</h2>
+</body>
+<script>
+     function functionToUseObject(per) {
+         if(typeof(per.fullName) !="function")
+         return;
+        document.write("Full Name of the employee is " + per.fullName());
+        document.write("<br>")
+    }
+    function Employee(firstName, lastName, id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+    functionToUseObject(new Employee("Harry","Potter","670010"));
+
+    Employee.prototype.fullName = function() {
+  return this.firstName + " " + this.lastName;
+};
+functionToUseObject(new Employee("Steve","Rogers","670009"));
+functionToUseObject(new Employee("Bruce","Wayne","670008"));
+
+</script>
+
+</html>

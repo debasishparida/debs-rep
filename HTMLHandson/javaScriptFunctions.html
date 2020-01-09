@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h2>JavaScript Function Examples</h2>
+</body>
+<script>
+
+    //Example Normal Function
+    function normalFunction() {
+        return "Normal Function has been called";
+    }
+    // Example - Inline function
+    let inlineFunction = function () {
+        return "Inline Function has been called";
+    }
+    //Example - passing function as parameter
+    function functionCallingFunction(myFunc) {
+        if (typeof (myFunc) === "function") {
+            console.log("Function that has been passed as a paremeter has been called");
+
+            return myFunc() + " from another Function";
+        }
+    }
+
+    //Example - Lambda functions
+    let lambdaFunction = (str) => { return "Lambda Function has been called"; }
+    // Example - function with new constructor has been called
+    let newFunction = new Function("param1", "return 'new function with parameter ' + param1 + ' has been called' ");
+
+    document.write(normalFunction() + "<br>");
+    document.write(inlineFunction() + "<br>");
+    document.write(functionCallingFunction(inlineFunction) + "<br>");
+    document.write(lambdaFunction() + "<br>");
+    document.write(newFunction() + "<br>");
+
+    // What happens when we call a function without the paraentheses () ??
+    document.write(newFunction + "<br>");
+
+</script>
+
+</html>

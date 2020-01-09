@@ -14,13 +14,14 @@
 
 <button onclick="document.getElementById('myImage').src='pic_bulboff.gif'">Turn off the light</button>
 <button onclick="test()">Click me</button>
-
+<input id="txt1" type = "text" value="debasish">
 </body>
 <script>
     function test()
     {
         console.log("I am here");
-        document.write("<h2>What Can JavaScript Do?</h2>...whatevr logic you can implement");
+        //document.write("<h2>What Can JavaScript Do?</h2>...whatevr logic you can implement");
+        console.log(document.getElementById("txt1").value);
     }
 </script>
 </html>

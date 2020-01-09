@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h2>JavaScript Objects Examples</h2>
+</body>
+<script>
+     function functionToUseObject(per) {
+        document.write("Full Name of the employee is " + per.fullName());
+        document.write("<br>")
+    };
+    /* ============ General declaration of the classes ================= */
+    class Emp {
+        constructor(firstName, lastName, id, fullName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.id = id;
+            this.fullName = fullName
+        }
+    }
+    let emp = new Emp("Roger","Federer","670001",function(){return this.firstName + " " + this.lastName;})
+    functionToUseObject(emp);
+
+    /* ============ Anonymous classes ================= */
+    let anotherEmp=class {
+        constructor(firstName, lastName, id, fullName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.id = id;
+            this.fullName = fullName
+        };
+    };
+    functionToUseObject(new anotherEmp("Rafael","Nadal","670002",function(){return this.firstName + " " + this.lastName;}));
+
+</script>
+
+</html>
